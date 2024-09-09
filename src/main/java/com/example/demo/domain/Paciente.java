@@ -7,12 +7,14 @@ import java.sql.Date;
 
 @Data
 @Entity
-public class Paciente{
+public class Paciente {
     @Id
     private String id;
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Usuario usuario;
+    private String nombre;
+    private String direccion;
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 }

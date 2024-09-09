@@ -13,6 +13,8 @@ public class Hospital {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Usuario usuario;
+    private String nombre;
+    private String direccion;
     private String serviciosMedicos;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hospital")
     private List<Medico> medicos;

@@ -11,6 +11,8 @@ public class Medico {
     @OneToOne
     @MapsId
     private Usuario usuario;
+    private String nombre;
+    private String direccion;
     private Boolean passwordChanged;
     @ManyToOne(fetch = FetchType.LAZY)
     private Hospital hospital;
