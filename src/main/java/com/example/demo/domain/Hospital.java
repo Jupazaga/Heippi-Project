@@ -14,6 +14,6 @@ public class Hospital {
     @MapsId
     private Usuario usuario;
     private String serviciosMedicos;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hospital")
     private List<Medico> medicos;
 }
