@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.Hospital;
-import com.example.demo.domain.Usuario;
 import com.example.demo.service.HospitalService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,8 @@ public class HospitalController {
         this.hospitalService = hospitalService;
     }
     @GetMapping
-    public String getHospital(){
-        return "Hospital";
+    public ResponseEntity<Iterable<Hospital>> getHospital(){
+        return ResponseEntity.ok(hospitalService.getListHospitals());
     }
     @PostMapping
     public ResponseEntity<Void> createHospital(@RequestBody Hospital hospital){

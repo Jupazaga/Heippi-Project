@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Hospital;
-import com.example.demo.domain.Usuario;
 import com.example.demo.repository.HospitalRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,10 @@ public class HospitalService {
     }
 
     public void createHospital(Hospital hospital) {
-
         hospitalRepository.save(hospital);
+    }
+
+    public Iterable<Hospital> getListHospitals() {
+        return hospitalRepository.findAll();
     }
 }
