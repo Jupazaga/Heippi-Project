@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.Authorities;
 import com.example.demo.domain.Observacion;
 import com.example.demo.service.ObservacionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/observaciones")
@@ -14,9 +17,9 @@ public class ObservacionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Void> getObservacionesMedicas(@PathVariable Long id) {
-        observacionService.getObservacion(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<Observacion>> getObservacionesMedicas(@PathVariable String id) {
+        Authorities authorities = Authorities.HOSPITAL;
+        return ResponseEntity.ok().body(observacionService.getObservacion(id, authorities));
     }
     @PostMapping
     public ResponseEntity<Void> createObservacionesMedicas(@RequestBody Observacion observacion) {
