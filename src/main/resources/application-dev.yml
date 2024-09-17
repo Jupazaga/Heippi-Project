@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: "Development Version"
+  datasource:
+    url: jdbc:h2:mem:hospital
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

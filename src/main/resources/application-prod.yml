@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql:hospital
+    username: postgres
+    password: ${PASSWORD}
+  application:
+    name: "Production"
