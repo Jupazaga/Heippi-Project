@@ -15,8 +15,8 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
     @GetMapping
-    public List<Usuario> getUsuarios() {
-        return usuarioService.findAllUsers();
+    public ResponseEntity<Iterable<Usuario>> getUsuarios() {
+        return ResponseEntity.ok(usuarioService.findAllUsers());
     }
     @PostMapping
     public ResponseEntity<Void> postUsuario(@RequestBody Usuario usuario) {
