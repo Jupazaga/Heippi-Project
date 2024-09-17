@@ -11,7 +11,7 @@ import java.sql.Date;
 public class Paciente implements Serializable {
     @Id
     private String id;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @MapsId
     private Usuario usuario;
     private String nombre;
