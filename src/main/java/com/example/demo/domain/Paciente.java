@@ -3,11 +3,12 @@ package com.example.demo.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 @Data
 @Entity
-public class Paciente {
+public class Paciente implements Serializable {
     @Id
     private String id;
     @OneToOne(fetch = FetchType.LAZY)
