@@ -5,6 +5,8 @@ import com.example.demo.repository.MedicoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class MedicoService {
@@ -14,5 +16,9 @@ public class MedicoService {
     }
     public void create(Medico medico) {
         medicoRepository.save(medico);
+    }
+
+    public List<Medico> getAllMedicos() {
+        return (List<Medico>) medicoRepository.findAll();
     }
 }
