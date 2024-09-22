@@ -18,6 +18,6 @@ public class Hospital implements Serializable {
     private String nombre;
     private String direccion;
     private String serviciosMedicos;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hospital")
     private List<Medico> medicos;
 }
