@@ -4,8 +4,10 @@ import com.example.demo.config.Authorities;
 import com.example.demo.domain.Observacion;
 import com.example.demo.service.ObservacionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -16,10 +18,9 @@ public class ObservacionController {
         this.observacionService = observacionService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Observacion>> getObservacionesMedicas(@PathVariable String id) {
-        Authorities authorities = Authorities.HOSPITAL;
-        return ResponseEntity.ok().body(observacionService.getObservacion(id, authorities));
+    @GetMapping
+    public ResponseEntity<List<Observacion>> getObservacionesMedicas(Authentication authentication) {
+        return ResponseEntity.ok().body(observacionService.getObservacion(authentication));
     }
     @PostMapping
     public ResponseEntity<Void> createObservacionesMedicas(@RequestBody Observacion observacion) {
