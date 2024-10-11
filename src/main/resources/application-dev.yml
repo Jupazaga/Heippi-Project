@@ -15,3 +15,16 @@ spring:
   h2:
     console:
       enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL-DEVELOPER}
+    password: ${APPPASSWORD-FOR-EMAIL-DEVELOPER}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            trust: smtp.gmail.com
+          starttls:
+            enable: true
