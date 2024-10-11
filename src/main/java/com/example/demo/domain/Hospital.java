@@ -8,10 +8,10 @@ import java.util.List;
 
 @Data
 @Entity
-public class Hospital implements Serializable {
+public class Hospital {
     @Id
     private String id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "id_hospital")
     private Usuario usuario;

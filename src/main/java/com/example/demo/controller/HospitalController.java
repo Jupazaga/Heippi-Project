@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.HospitalDTO;
 import com.example.demo.domain.Hospital;
 import com.example.demo.service.HospitalService;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,8 @@ public class HospitalController {
         return ResponseEntity.ok(hospitalService.getListHospitals());
     }
     @PostMapping
-    public ResponseEntity<Void> createHospital(@RequestBody Hospital hospital){
-        hospitalService.createHospital(hospital);
+    public ResponseEntity<Void> createHospital(@RequestBody HospitalDTO hospitalDTO){
+        hospitalService.createHospital(hospitalDTO);
         return ResponseEntity.ok().build();
     }
 }
