@@ -20,12 +20,14 @@ public class SecurityConfig {
                         request
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/h2-console/**").permitAll()
+                                .requestMatchers("/usuarios/password").permitAll()
                                 .anyRequest().authenticated()
         ).
                 csrf(csrf -> csrf.disable())
                 .headers(headers -> {
                     headers.frameOptions(frame -> frame.disable());
-                });
+                })
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 
