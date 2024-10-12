@@ -4,13 +4,12 @@ import com.example.demo.config.Authorities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Entity
 @Data
-public class Usuario implements Serializable {
+public class Usuario {
     @Id
     private String identificacion;
+    @Column(unique=true)
     private String email;
     private String telefono;
     private String password;

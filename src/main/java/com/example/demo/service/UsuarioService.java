@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.dto.RecoveryDTO;
+import com.example.demo.controller.dto.UsuarioDTO;
+import com.example.demo.controller.mapper.UsuarioMapper;
 import com.example.demo.domain.Recovery;
 import com.example.demo.domain.Usuario;
 import com.example.demo.repository.RecoveryRepository;
@@ -22,23 +25,25 @@ public class UsuarioService {
     private final RecoveryRepository recoveryRepository;
     private final EmailService emailService;
     private final HttpServletRequest request;
+    private final UsuarioMapper usuarioMapper;
 
     public UsuarioService(
             UsuariosRepository usuariosRepository,
             PasswordEncoder passwordEncoder,
             RecoveryRepository recoveryRepository,
             EmailService emailService,
-            HttpServletRequest request) {
+            HttpServletRequest request,
+            UsuarioMapper usuarioMapper) {
         this.usuariosRepository = usuariosRepository;
         this.passwordEncoder = passwordEncoder;
         this.recoveryRepository = recoveryRepository;
         this.emailService = emailService;
         this.request = request;
+        this.usuarioMapper = usuarioMapper;
 
     }
-    public void crearUsuario(Usuario usuario) {
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-        usuariosRepository.save(usuario);
+    public void crearUsuario(UsuarioDTO usuarioDTO) {
+        usuariosRepository.save(usuarioMapper.UsuarioDTOtoUsuario(usuarioDTO));
     }
 
     public Iterable<Usuario> findAllUsers() {
@@ -46,7 +51,8 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void requestPasswordReset(String email) {
+    public void requestPasswordReset(UsuarioDTO usuarioDTO) {
+        String email = usuarioDTO.getEmail();
         Optional<Usuario> usuario = Optional.ofNullable(usuariosRepository.findUsuarioByEmail(email));
 
         if(usuario.isEmpty()) {
@@ -66,8 +72,9 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void resetPassword(Recovery recovery, String password) {
-        Optional<Recovery> optionalRecovery = Optional.ofNullable(recoveryRepository.findRecoveryByToken(recovery.getToken()));
+    public void resetPassword(RecoveryDTO recoveryDTO) {
+
+        Optional<Recovery> optionalRecovery = Optional.ofNullable(recoveryRepository.findRecoveryByToken(recoveryDTO.getToken()));
         if(optionalRecovery.isEmpty()) {
             throw new RuntimeException("Recovery token no encontrado");
         }
@@ -79,7 +86,7 @@ public class UsuarioService {
         }
 
         Usuario usuario = recoveryToken.getUsuario();
-        usuario.setPassword(passwordEncoder.encode(password));
+        usuario.setPassword(passwordEncoder.encode(recoveryDTO.getPassword()));
         usuariosRepository.save(usuario);
         recoveryRepository.delete(recoveryToken);
     }

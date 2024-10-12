@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.RecoveryDTO;
+import com.example.demo.controller.dto.UsuarioDTO;
 import com.example.demo.domain.Recovery;
 import com.example.demo.domain.Usuario;
 import com.example.demo.service.UsuarioService;
@@ -19,24 +21,21 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.findAllUsers());
     }
     @PostMapping
-    public ResponseEntity<Void> postUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Void> postUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 
-        usuarioService.crearUsuario(usuario);
+        usuarioService.crearUsuario(usuarioDTO);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/password")
-    public ResponseEntity<Void> requestRecovery(@RequestBody Usuario usuario) {
-        String email = usuario.getEmail();
-        usuarioService.requestPasswordReset(email);
+    public ResponseEntity<Void> requestRecovery(@RequestBody UsuarioDTO usuarioDTO) {
+        usuarioService.requestPasswordReset(usuarioDTO);
         return ResponseEntity.accepted().build();
     }
 
     @PatchMapping("/password")
-    public ResponseEntity<Void> updatePassword(@RequestParam String token, @RequestParam String password) {
-        Recovery recovery = new Recovery();
-        recovery.setToken(token);
-        usuarioService.resetPassword(recovery, password);
+    public ResponseEntity<Void> updatePassword(@RequestBody RecoveryDTO recoveryDTO) {
+        usuarioService.resetPassword(recoveryDTO);
         return ResponseEntity.noContent().build();
     }
 }
