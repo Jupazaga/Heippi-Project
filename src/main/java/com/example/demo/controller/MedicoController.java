@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.MedicoDTO;
 import com.example.demo.domain.Medico;
 import com.example.demo.service.MedicoService;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,8 @@ public class MedicoController {
         );
     }
     @PostMapping
-    public ResponseEntity<Void> createMedico(@RequestBody Medico medico) {
-        medicoService.create(medico);
+    public ResponseEntity<Void> createMedico(@RequestBody MedicoDTO medicoDTO) {
+        medicoService.create(medicoDTO);
         return ResponseEntity.ok().build();
     }
 }

@@ -7,16 +7,16 @@ import java.io.Serializable;
 
 @Entity
 @Data
-public class Medico implements Serializable {
+public class Medico {
     @Id
     private String id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @MapsId
     private Usuario usuario;
     private String nombre;
     private String direccion;
     private Boolean passwordChanged;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hospital")
     private Hospital hospital;
 }

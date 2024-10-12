@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.dto.MedicoDTO;
+import com.example.demo.controller.mapper.MedicoMapper;
 import com.example.demo.domain.Medico;
 import com.example.demo.repository.MedicoRepository;
 import org.springframework.stereotype.Service;
@@ -11,11 +13,14 @@ import java.util.List;
 @Transactional
 public class MedicoService {
     private final MedicoRepository medicoRepository;
-    public MedicoService(MedicoRepository medicoRepository) {
+    private final MedicoMapper medicoMapper;
+
+    public MedicoService(MedicoRepository medicoRepository, MedicoMapper medicoMapper) {
         this.medicoRepository = medicoRepository;
+        this.medicoMapper = medicoMapper;
     }
-    public void create(Medico medico) {
-        medicoRepository.save(medico);
+    public void create(MedicoDTO medicoDTO) {
+        medicoRepository.save(medicoMapper.medicoDTOToMedico(medicoDTO));
     }
 
     public List<Medico> getAllMedicos() {
