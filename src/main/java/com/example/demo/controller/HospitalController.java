@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.controller.dto.HospitalDTO;
 import com.example.demo.domain.Hospital;
 import com.example.demo.service.HospitalService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class HospitalController {
         return ResponseEntity.ok(hospitalService.getListHospitals());
     }
     @PostMapping
-    public ResponseEntity<Void> createHospital(@RequestBody HospitalDTO hospitalDTO){
+    public ResponseEntity<Void> createHospital(@Valid @RequestBody HospitalDTO hospitalDTO){
         hospitalService.createHospital(hospitalDTO);
         return ResponseEntity.ok().build();
     }

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.controller.dto.MedicoDTO;
 import com.example.demo.domain.Medico;
 import com.example.demo.service.MedicoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class MedicoController {
         );
     }
     @PostMapping
-    public ResponseEntity<Void> createMedico(@RequestBody MedicoDTO medicoDTO) {
+    public ResponseEntity<Void> createMedico(@Valid @RequestBody MedicoDTO medicoDTO) {
         medicoService.create(medicoDTO);
         return ResponseEntity.ok().build();
     }
