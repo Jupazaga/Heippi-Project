@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.RecoveryDTO;
 import com.example.demo.controller.dto.UsuarioDTO;
-import com.example.demo.domain.Recovery;
 import com.example.demo.domain.Usuario;
 import com.example.demo.service.UsuarioService;
 import jakarta.validation.Valid;
