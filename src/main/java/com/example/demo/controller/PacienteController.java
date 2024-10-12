@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.Paciente;
+import com.example.demo.controller.dto.PacienteDTO;
 import com.example.demo.service.PacienteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +18,8 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createPaciente(@RequestBody Paciente paciente){
-        pacienteService.crearPaciente(paciente);
+    public ResponseEntity<Void> createPaciente(@RequestBody PacienteDTO pacienteDTO){
+        pacienteService.crearPaciente(pacienteDTO);
         return ResponseEntity.ok().build();
     }
 }
