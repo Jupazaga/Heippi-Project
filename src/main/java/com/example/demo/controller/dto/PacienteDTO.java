@@ -2,6 +2,7 @@ package com.example.demo.controller.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -16,6 +17,6 @@ public class PacienteDTO implements Serializable {
     @NotBlank
     private String nombre;
     private String direccion;
-    @NotBlank
+    @DateTimeFormat
     private Date fechaNacimiento;
 }

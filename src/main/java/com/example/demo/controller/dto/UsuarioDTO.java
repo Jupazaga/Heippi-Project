@@ -3,6 +3,7 @@ package com.example.demo.controller.dto;
 import com.example.demo.config.Authorities;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serial;
@@ -19,7 +20,7 @@ public class UsuarioDTO implements Serializable {
     private String telefono;
     @NotBlank(message = "password is mandatory")
     private String password;
-    @NotBlank
+    @NotNull
     private Authorities authority;
 
 }
