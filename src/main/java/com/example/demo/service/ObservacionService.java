@@ -1,22 +1,25 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.dto.ObservacionDTO;
+import com.example.demo.controller.mapper.ObservacionMapper;
 import com.example.demo.domain.Observacion;
 import com.example.demo.repository.ObservacionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.List;
 
 @Service
 @Transactional
 public class ObservacionService {
     private final ObservacionRepository observacionRepository;
-    public ObservacionService(ObservacionRepository observacionRepository) {
+    private final ObservacionMapper observacionMapper;
+
+    public ObservacionService(ObservacionRepository observacionRepository, ObservacionMapper observacionMapper) {
         this.observacionRepository = observacionRepository;
+        this.observacionMapper = observacionMapper;
     }
     public List<Observacion> getObservacion(Authentication authentication) {
         //Process the Collection of Authorities and get the first element
@@ -40,7 +43,7 @@ public class ObservacionService {
         }
     }
 
-    public void createObservacion(Observacion observacion) {
-        observacionRepository.save(observacion);
+    public void createObservacion(ObservacionDTO observacionDTO) {
+        observacionRepository.save(observacionMapper.observacionDTOtoObservacion(observacionDTO));
     }
 }

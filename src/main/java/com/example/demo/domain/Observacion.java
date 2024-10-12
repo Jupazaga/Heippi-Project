@@ -3,11 +3,9 @@ package com.example.demo.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Entity
 @Data
-public class Observacion implements Serializable {
+public class Observacion {
     @Id
     @GeneratedValue
     private Long id;
