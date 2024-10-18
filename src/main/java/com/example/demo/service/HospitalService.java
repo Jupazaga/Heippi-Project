@@ -2,10 +2,11 @@ package com.example.demo.service;
 
 import com.example.demo.controller.dto.HospitalDTO;
 import com.example.demo.controller.mapper.HospitalMapper;
-import com.example.demo.domain.Hospital;
 import com.example.demo.repository.HospitalRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,7 +22,7 @@ public class HospitalService {
         hospitalRepository.save(hospitalMapper.hospitalDTOtoHospital(hospitalDTO));
     }
 
-    public Iterable<Hospital> getListHospitals() {
-        return hospitalRepository.findAll();
+    public List<HospitalDTO> getListHospitals() {
+        return hospitalMapper.hospitalesToHospitalesDTO(hospitalRepository.findAll());
     }
 }
