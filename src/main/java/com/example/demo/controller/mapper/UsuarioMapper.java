@@ -5,6 +5,9 @@ import com.example.demo.domain.Usuario;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UsuarioMapper {
     private final PasswordEncoder passwordEncoder;
@@ -28,5 +31,13 @@ public class UsuarioMapper {
         usuarioDTO.setTelefono(usuario.getTelefono());
         usuarioDTO.setAuthority(usuario.getAuthority());
         return usuarioDTO;
+    }
+
+    public List<UsuarioDTO> usuariosToUsuarioDTOs(Iterable<Usuario> usuarios) {
+        List<UsuarioDTO> usuarioDTOs = new ArrayList<>();
+        for (Usuario usuario : usuarios) {
+            usuarioDTOs.add(UsuarioToUsuarioDTO(usuario));
+        }
+        return usuarioDTOs;
     }
 }

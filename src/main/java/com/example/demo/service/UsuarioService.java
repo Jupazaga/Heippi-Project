@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -46,11 +47,10 @@ public class UsuarioService {
         usuariosRepository.save(usuarioMapper.UsuarioDTOtoUsuario(usuarioDTO));
     }
 
-    public Iterable<Usuario> findAllUsers() {
-        return usuariosRepository.findAll();
+    public List<UsuarioDTO> findAllUsers() {
+        return usuarioMapper.usuariosToUsuarioDTOs(usuariosRepository.findAll());
     }
 
-    @Transactional
     public void requestPasswordReset(UsuarioDTO usuarioDTO) {
         String email = usuarioDTO.getEmail();
         Optional<Usuario> usuario = Optional.ofNullable(usuariosRepository.findUsuarioByEmail(email));
@@ -71,7 +71,6 @@ public class UsuarioService {
         emailService.sendSimpleMessage("DevelopApp@gmail.com", email, "PasswordRecovery", text);
     }
 
-    @Transactional
     public void resetPassword(RecoveryDTO recoveryDTO) {
 
         Optional<Recovery> optionalRecovery = Optional.ofNullable(recoveryRepository.findRecoveryByToken(recoveryDTO.getToken()));

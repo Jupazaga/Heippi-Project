@@ -2,11 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.RecoveryDTO;
 import com.example.demo.controller.dto.UsuarioDTO;
-import com.example.demo.domain.Usuario;
 import com.example.demo.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -17,7 +18,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
     @GetMapping
-    public ResponseEntity<Iterable<Usuario>> getUsuarios() {
+    public ResponseEntity<List<UsuarioDTO>> getUsuarios() {
         return ResponseEntity.ok(usuarioService.findAllUsers());
     }
     @PostMapping
