@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.controller.dto.MedicoDTO;
 import com.example.demo.controller.mapper.MedicoMapper;
-import com.example.demo.domain.Medico;
 import com.example.demo.repository.MedicoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +22,7 @@ public class MedicoService {
         medicoRepository.save(medicoMapper.medicoDTOToMedico(medicoDTO));
     }
 
-    public List<Medico> getAllMedicos() {
-        return (List<Medico>) medicoRepository.findAll();
+    public List<MedicoDTO> getAllMedicos() {
+        return medicoMapper.medicosToMedicosDTO(medicoRepository.findAll());
     }
 }

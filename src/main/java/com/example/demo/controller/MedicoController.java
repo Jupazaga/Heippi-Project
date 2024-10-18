@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.controller.dto.MedicoDTO;
-import com.example.demo.domain.Medico;
 import com.example.demo.service.MedicoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class MedicoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Medico>> getMedico() {
+    public ResponseEntity<List<MedicoDTO>> getMedico() {
         return ResponseEntity.ok(
                 medicoService.getAllMedicos()
         );
