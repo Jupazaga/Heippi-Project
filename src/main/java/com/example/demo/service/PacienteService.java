@@ -6,6 +6,8 @@ import com.example.demo.repository.PacienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class PacienteService {
@@ -18,5 +20,9 @@ public class PacienteService {
     }
     public void crearPaciente(PacienteDTO pacienteDTO) {
         pacienteRepository.save(pacienteMapper.pacienteDTOToPaciente(pacienteDTO));
+    }
+
+    public List<PacienteDTO> getAllPacientes() {
+        return pacienteMapper.pacientesToPacientesDTO(pacienteRepository.findAll());
     }
 }

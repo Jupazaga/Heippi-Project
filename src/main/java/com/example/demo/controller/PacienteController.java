@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
@@ -14,8 +16,8 @@ public class PacienteController {
         this.pacienteService = pacienteService;
     }
     @GetMapping
-    public String getPaciente(){
-        return "Paciente";
+    public ResponseEntity<List<PacienteDTO>> getPaciente() {
+        return ResponseEntity.ok(pacienteService.getAllPacientes());
     }
 
     @PostMapping
