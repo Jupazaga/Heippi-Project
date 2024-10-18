@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.controller.dto.ObservacionDTO;
 import com.example.demo.controller.mapper.ObservacionMapper;
-import com.example.demo.domain.Observacion;
 import com.example.demo.repository.ObservacionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
@@ -21,23 +20,21 @@ public class ObservacionService {
         this.observacionRepository = observacionRepository;
         this.observacionMapper = observacionMapper;
     }
-    public List<Observacion> getObservacion(Authentication authentication) {
+    public List<ObservacionDTO> getObservaciones(Authentication authentication) {
         //Process the Collection of Authorities and get the first element
         GrantedAuthority grantedAuthority = authentication
-                .getAuthorities()
-                .stream().findFirst()
-                .get();
+                .getAuthorities().iterator().next();
 
         String id = authentication.getName();
         switch (grantedAuthority.getAuthority()) {
             case "HOSPITAL"-> {
-                return observacionRepository.findAllByHospitalId(id);
+                return observacionMapper.observacionesToObservacionesDTOs(observacionRepository.findAllByHospitalId(id));
             }
             case "MEDICO" -> {
-                return observacionRepository.findAllByMedicoId(id);
+                return observacionMapper.observacionesToObservacionesDTOs(observacionRepository.findAllByMedicoId(id));
             }
             case "PACIENTE" -> {
-                return observacionRepository.findAllByPacienteId(id);
+                return observacionMapper.observacionesToObservacionesDTOs(observacionRepository.findAllByPacienteId(id));
             }
             default -> {return null;}
         }

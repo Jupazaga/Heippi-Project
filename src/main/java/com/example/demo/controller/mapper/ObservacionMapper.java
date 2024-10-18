@@ -7,6 +7,9 @@ import com.example.demo.domain.Observacion;
 import com.example.demo.domain.Paciente;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ObservacionMapper {
     public Observacion observacionDTOtoObservacion(ObservacionDTO observacionDTO) {
@@ -39,5 +42,13 @@ public class ObservacionMapper {
         observacionDTO.setEstadoSalud(observacion.getEstadoSalud());
         observacionDTO.setEspecialidad(observacion.getEspecialidad());
         return observacionDTO;
+    }
+
+    public List<ObservacionDTO> observacionesToObservacionesDTOs(List<Observacion> all) {
+        List<ObservacionDTO> observacionDTOS = new ArrayList<>();
+        for (Observacion observacion : all) {
+            observacionDTOS.add(observacionToObservacionDTO(observacion));
+        }
+        return observacionDTOS;
     }
 }

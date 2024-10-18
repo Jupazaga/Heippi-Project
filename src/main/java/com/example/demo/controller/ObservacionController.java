@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.controller.dto.ObservacionDTO;
-import com.example.demo.domain.Observacion;
 import com.example.demo.service.ObservacionService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +18,8 @@ public class ObservacionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Observacion>> getObservacionesMedicas(Authentication authentication) {
-        return ResponseEntity.ok().body(observacionService.getObservacion(authentication));
+    public ResponseEntity<List<ObservacionDTO>> getObservacionesMedicas(Authentication authentication) {
+        return ResponseEntity.ok().body(observacionService.getObservaciones(authentication));
     }
     @PostMapping
     public ResponseEntity<Void> createObservacionesMedicas(@Valid @RequestBody ObservacionDTO observacionDTO) {
