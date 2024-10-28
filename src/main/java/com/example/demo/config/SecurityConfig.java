@@ -22,6 +22,9 @@ public class SecurityConfig {
                                 .requestMatchers("/h2-console/**").permitAll()
                                 .requestMatchers("/usuarios/password").permitAll()
                                 .requestMatchers("/usuarios/activation").permitAll()
+                                .requestMatchers("/hospital").hasAuthority(String.valueOf(Authorities.HOSPITAL))
+                                .requestMatchers("/medicos").hasAuthority(String.valueOf(Authorities.MEDICO))
+                                .requestMatchers("/pacientes").hasAuthority(String.valueOf(Authorities.PACIENTE))
                                 .anyRequest().authenticated()
         ).
                 csrf(csrf -> csrf.disable())
