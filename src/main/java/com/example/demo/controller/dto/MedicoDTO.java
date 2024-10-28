@@ -15,4 +15,6 @@ public class MedicoDTO implements Serializable {
     @NotBlank(message = "nombre is mandatory")
     private String nombre;
     private String direccion;
+    @NotBlank(message = "new Password is mandatory")
+    private String newPassword;
 }

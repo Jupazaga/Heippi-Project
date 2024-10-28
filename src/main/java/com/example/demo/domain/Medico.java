@@ -13,7 +13,6 @@ public class Medico {
     private Usuario usuario;
     private String nombre;
     private String direccion;
-    private Boolean passwordChanged;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hospital")
     private Hospital hospital;
