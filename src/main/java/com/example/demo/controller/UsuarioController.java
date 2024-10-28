@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.EmailUsuarioDTO;
 import com.example.demo.controller.dto.RecoveryDTO;
 import com.example.demo.controller.dto.UsuarioDTO;
 import com.example.demo.service.UsuarioService;
@@ -27,10 +28,16 @@ public class UsuarioController {
         usuarioService.crearUsuario(usuarioDTO);
         return ResponseEntity.ok().build();
     }
+    @PatchMapping("/activation")
+    public ResponseEntity<Void> activateUsuario(@RequestBody String key) {
+        System.out.println(key);
+        usuarioService.activateUsuario(key);
+        return ResponseEntity.ok().build();
+    }
 
     @PutMapping("/password")
-    public ResponseEntity<Void> requestRecovery(@Valid @RequestBody UsuarioDTO usuarioDTO) {
-        usuarioService.requestPasswordReset(usuarioDTO);
+    public ResponseEntity<Void> requestRecovery(@Valid @RequestBody EmailUsuarioDTO emailUsuarioDTO) {
+        usuarioService.requestPasswordReset(emailUsuarioDTO);
         return ResponseEntity.accepted().build();
     }
 

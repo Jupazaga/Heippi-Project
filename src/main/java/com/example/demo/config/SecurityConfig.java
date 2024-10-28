@@ -21,6 +21,7 @@ public class SecurityConfig {
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/h2-console/**").permitAll()
                                 .requestMatchers("/usuarios/password").permitAll()
+                                .requestMatchers("/usuarios/activation").permitAll()
                                 .anyRequest().authenticated()
         ).
                 csrf(csrf -> csrf.disable())

@@ -15,4 +15,6 @@ public class Usuario {
     private String password;
     @Enumerated(EnumType.STRING)
     private Authorities authority;
+    private boolean activado;
+    private String activationKey;
 }

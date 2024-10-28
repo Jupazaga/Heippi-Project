@@ -40,6 +40,8 @@ create table usuario (
     email varchar(255),
     password varchar(255),
     telefono varchar(255),
+    activado boolean,
+    activation_Key varchar(255),
     primary key (identificacion)
     );
 

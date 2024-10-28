@@ -24,6 +24,13 @@ public class AuthenticationConfig implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = usuariosRepository.findUsuarioByIdentificacion(username);
+        if (!usuario.isActivado()){
+            throw new UsernameNotFoundException("Usuario no activado");
+        }
+        return createSpringSecurityUser(usuario);
+    }
+
+    private User createSpringSecurityUser(Usuario usuario) {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(usuario.getAuthority().toString()));
         return new User(usuario.getIdentificacion(), usuario.getPassword(), authorities);
