@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.samples;
 
 import com.example.demo.config.Authorities;
 import com.example.demo.controller.dto.UsuarioDTO;
