@@ -2,7 +2,7 @@ spring:
   application:
     name: "Development Version"
   datasource:
-    url: jdbc:h2:mem:hospital
+    url: jdbc:h2:file:./target/H2Database/hospital;AUTO_SERVER=true
     username: sa
     password:
   jpa:
