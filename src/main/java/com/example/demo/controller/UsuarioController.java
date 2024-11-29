@@ -30,7 +30,6 @@ public class UsuarioController {
     }
     @PatchMapping("/activation")
     public ResponseEntity<Void> activateUsuario(@RequestBody String key) {
-        System.out.println(key);
         usuarioService.activateUsuario(key);
         return ResponseEntity.ok().build();
     }
