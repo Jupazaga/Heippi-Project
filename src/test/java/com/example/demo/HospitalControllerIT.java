@@ -1,10 +1,13 @@
-package com.example.demo.controller;
+package com.example.demo;
 
+import com.example.demo.controller.HospitalController;
 import com.example.demo.controller.dto.HospitalDTO;
 import com.example.demo.domain.Hospital;
 import com.example.demo.domain.Usuario;
 import com.example.demo.repository.HospitalRepository;
 import com.example.demo.repository.UsuariosRepository;
+import com.example.demo.samples.HospitalsSamples;
+import com.example.demo.samples.UsuariosSamples;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

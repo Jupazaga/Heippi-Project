@@ -1,5 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo;
 
+import com.example.demo.controller.UsuarioController;
 import com.example.demo.controller.dto.EmailUsuarioDTO;
 import com.example.demo.controller.dto.RecoveryDTO;
 import com.example.demo.controller.dto.UsuarioDTO;
@@ -7,6 +8,7 @@ import com.example.demo.domain.Recovery;
 import com.example.demo.domain.Usuario;
 import com.example.demo.repository.RecoveryRepository;
 import com.example.demo.repository.UsuariosRepository;
+import com.example.demo.samples.UsuariosSamples;
 import com.example.demo.service.EmailService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
