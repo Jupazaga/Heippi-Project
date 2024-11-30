@@ -5,18 +5,19 @@ import com.example.demo.controller.dto.UsuarioDTO;
 import com.example.demo.domain.Usuario;
 
 public class UsuariosSamples {
-    private final
-        String identificaionTest1 = "1111";
-        String emailTest1 = "test1@test.com";
-        String passwordTest1 = "123456";
-        String telefonoTest1 = "123456789";
-        Authorities authorityTest1 = Authorities.HOSPITAL;
+    private final String
+            identificaionTest1 = "1111",
+            emailTest1 = "test1@test.com",
+            passwordTest1 = "123456",
+            telefonoTest1 = "123456789";
+    private final Authorities authorityTest1 = Authorities.HOSPITAL;
 
-        String identificaionTest2 = "2222";
-        String emailTest2 = "test2@test.com";
-        String passwordTest2 = "1234567";
-        String telefonoTest2 = "1123456789";
-        Authorities authorityTest2 = Authorities.HOSPITAL;
+    private final String
+            identificaionTest2 = "2222",
+            emailTest2 = "test2@test.com",
+            passwordTest2 = "1234567",
+            telefonoTest2 = "1123456789";
+    private final Authorities authorityTest2 = Authorities.HOSPITAL;
 
     public UsuarioDTO usuarioDTOTest1() {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
