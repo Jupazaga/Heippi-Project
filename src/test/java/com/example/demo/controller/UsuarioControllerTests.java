@@ -1,6 +1,5 @@
-package com.example.demo;
+package com.example.demo.controller;
 
-import com.example.demo.controller.UsuarioController;
 import com.example.demo.controller.dto.EmailUsuarioDTO;
 import com.example.demo.controller.dto.RecoveryDTO;
 import com.example.demo.controller.dto.UsuarioDTO;

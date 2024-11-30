@@ -1,6 +1,5 @@
-package com.example.demo;
+package com.example.demo.controller;
 
-import com.example.demo.controller.PacienteController;
 import com.example.demo.controller.dto.PacienteDTO;
 import com.example.demo.controller.mapper.PacienteMapper;
 import com.example.demo.domain.Paciente;
