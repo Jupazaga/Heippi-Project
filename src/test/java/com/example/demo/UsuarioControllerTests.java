@@ -126,7 +126,7 @@ public class UsuarioControllerTests {
         ResponseEntity<Void> requestRecovery = usuarioController.requestRecovery(emailUsuarioDTO);
         assertEquals(HttpStatus.ACCEPTED, requestRecovery.getStatusCode());
 
-        Recovery recoveryById = recoveryRepository.findById(usuario.getIdentificacion()).get();
+        Recovery recoveryById = recoveryRepository.findById(usuario.getIdentificacion()).orElse(null);
         assertNotNull(recoveryById);
         assertNotNull(recoveryById.getToken());
 
