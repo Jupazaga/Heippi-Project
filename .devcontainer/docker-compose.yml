@@ -5,7 +5,7 @@ volumes:
 
 services:
   app:
-    container_name: javadev
+    container_name: Java-Backend
     build: 
       context: .
       dockerfile: Dockerfile
@@ -16,8 +16,8 @@ services:
         POSTGRES_DB: postgres
         POSTGRES_HOSTNAME: postgres
 
-    volumes:
-      - ../..:/workspaces:cached
+#    volumes:
+#      - ../..:/workspaces:cached
       
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
