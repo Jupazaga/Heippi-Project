@@ -9,7 +9,6 @@ create table hospital (
 create table medico (
     direccion varchar(255),
     nombre varchar(255),
-    password_changed boolean,
     usuario_identificacion varchar(255) not null,
     id_hospital varchar(255),
     primary key (usuario_identificacion)
@@ -34,17 +33,28 @@ create table paciente (
     primary key (usuario_identificacion)
     );
 
+create table token_password (
+                                id_usuario varchar(255) not null,
+                                expiration date,
+                                token varchar(255),
+                                primary key (id_usuario)
+);
+
 create table usuario (
     identificacion varchar(255) not null,
-    authority varchar(255),
+    authority enum ('HOSPITAL','MEDICO','PACIENTE'),
     email varchar(255),
     password varchar(255),
     telefono varchar(255),
-    activado boolean,
-    activation_Key varchar(255),
+    activado boolean not null,
+    activation_key varchar(255),
     primary key (identificacion)
     );
 
+alter table if exists usuario
+drop constraint if exists UK5171l57faosmj8myawaucatdw;
+alter table if exists usuario
+    add constraint UK5171l57faosmj8myawaucatdw unique (email);
 create sequence observacion_seq start with 1 increment by 50;
 
 alter table if exists hospital
@@ -81,3 +91,8 @@ alter table if exists paciente
     add constraint FK8etovayuiwh7xt3ou7088sh9q
         foreign key (usuario_identificacion)
             references usuario;
+
+alter table if exists token_password
+    add constraint FKswt0jaxmtm3c94dr6qaoo2jnv
+    foreign key (id_usuario)
+    references usuario
